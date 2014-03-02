@@ -9,7 +9,15 @@ app.use(express.bodyParser());
 app.set('view engine', 'html');
 app.engine('html', require('hbs').__express);
 
-app.get('/ga', function(req, res){
+request('http://www.google.com', function (error, response, body) {
+  if (!error && response.statusCode == 200) {
+    console.log(body); // Print the google web page.
+  }
+});
+
+return;
+
+app.get('/ga/:url', function(req, res){
   var data = {
     title: '',
     body: '<div><a href="http://baidu.com">this is a link</a></div>'
